@@ -68,8 +68,11 @@ for n in range(1,numOfPages):
     for i in range(n, numOfPages):
         pageObj = pdfReader.getPage(i)
         my_str=pageObj.extractText()
-        if "Slide" + str(n) in my_str:
+        if n==i==1:
+            str1=my_str
+        if my_str.endswith("Slide" + str(n)+"\n"):
             L[n-1]=i
+            print(L)
 L=[k for k in L if k!=0]
 L.insert(0, 0)
 #####creating pdf with extracted pages
@@ -83,4 +86,6 @@ with open(output_filename,'wb') as out:
 
 # close the PDF file object
 pdfFile.close()
+# %%<
+L
 # %%
