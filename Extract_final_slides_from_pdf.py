@@ -1,42 +1,3 @@
-#%%
-from doctest import OutputChecker
-import os
-os.system("pdfgrep \"Slide 53\" --page-number  02_What_is_ML.pdf")
-
-# %%
-import subprocess
-subprocess.Popen('wsl.exe',shell=True)
-print(subprocess.check_output("pdfgrep \"Slide 5\" --page-number  02_What_is_ML.pdf",shell=True))
-# %%
-import subprocess
-filtered = ['[A-Z].+Jane'] # the list of regexes is shortened to one string, to keep the example simple.
-for regex in filtered: 
-    arg = ['pdfgrep',  '-PrH',  f"{regex}"]
-    process_match = subprocess.run(arg, stdout=subprocess.PIPE, shell=True)
-# %%
-import PyPDF2 as PDF #import pdf module 
-import re
-
-p = PDF.PdfFileReader("02_What_is_ML.pdf")
-
-# get number of pages
-NumPages = p.getNumPages()
-
-#define keyterms; David, Final, End, Score, Birthday, Hello Ben
-
-kTerm = "Slide 2"
-
-#extract text and do the search
-for i in range(0, NumPages):
-    PageObj = p.getPage(i)
-    print("Looking through page " + str(i))
-    Text = PageObj.extractText()
-    Result = re.search(kTerm,Text)
-
-    if Result:
-         print(f"{kTerm} found")
-    else:
-         print("0")
 # %%
 from PyPDF2 import PdfFileReader,PdfFileWriter
 import tkinter.filedialog
@@ -72,7 +33,6 @@ for n in range(1,numOfPages):
             str1=my_str
         if my_str.endswith("Slide" + str(n)+"\n"):
             L[n-1]=i
-            print(L)
 L=[k for k in L if k!=0]
 L.insert(0, 0)
 #####creating pdf with extracted pages
@@ -86,6 +46,4 @@ with open(output_filename,'wb') as out:
 
 # close the PDF file object
 pdfFile.close()
-# %%<
-L
 # %%
