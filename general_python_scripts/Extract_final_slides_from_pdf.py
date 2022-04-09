@@ -9,7 +9,7 @@ import re
 root = tk.Tk()
 root.withdraw() #use to hide tkinter window
 
-currdir = os.getcwd()
+currdir = "..\\" + os.getcwd()
 pdf_dir_and_name = tk.filedialog.askopenfilename(parent=root, initialdir=currdir, title='Please select a directory')
 if len(pdf_dir_and_name) > 0:
     print ("You chose %s" % pdf_dir_and_name)
