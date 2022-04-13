@@ -30,7 +30,7 @@ def check_almost_duplicates(df):
         boolean_series_of_column = pd.DataFrame({col : [False]*len(df)},index=df.index)[col]
         for iterating_line in range(len(df)-1):
             for comparing_line in range(iterating_line+1,len(df)):
-                if SequenceMatcher(None, str(series_of_column.iloc[iterating_line]),str(series_of_column.iloc[comparing_line])).ratio()>0.7:
+                if SequenceMatcher(None, str(series_of_column.iloc[iterating_line]),str(series_of_column.iloc[comparing_line])).ratio()>0.9:
                     boolean_series_of_column.iloc[iterating_line]=True
                     boolean_series_of_column.iloc[comparing_line]=True
         df_temp = pd.concat([df_temp, df[boolean_series_of_column]], axis = 1)
